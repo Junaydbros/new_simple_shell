@@ -10,7 +10,11 @@
 
 int main(int argc, char **argv)
 {
-	loop();
+
+	(void)argc;
+	(void)argv;
+
+	clish_loop();
 
 	return (EXIT_SUCCESS);
 }

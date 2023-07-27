@@ -25,6 +25,7 @@ void pipe_input_param(char *);
 void tokenprinter(char **);
 void ctrl_handle();
 void get_dir(char *);
+void clish_loop(void);
 
 char *get_input_param_path();
 char *get_path(char *cmd);
