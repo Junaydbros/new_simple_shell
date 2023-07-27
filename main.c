@@ -11,11 +11,12 @@
 int main(int argc, char **argv)
 {
 	void loop();
+	void clish_loop();
 
 	(void)argc;
 	(void)argv;
 
-	void clish_loop();
+	/* void clish_loop(); */
 
 	return (EXIT_SUCCESS);
 }

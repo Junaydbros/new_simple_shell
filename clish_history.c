@@ -13,6 +13,7 @@ int clish_history(void)
 {
 	FILE *fp = fopen(get_input_param_path(), "r");
 	int ch, c, line_numb = 1;
+	int l = 0, flag = 0;
 
 	char line[128];
 	char prev_comm[128];
@@ -58,7 +59,7 @@ int clish_history(void)
 			if (line_numb == ch)
 			{
 				strcpy(prev_comm, &line[3]);
-				int l = 0, flag = 0;
+				/* int l = 0, flag = 0; */
 
 				fclose(fp);
 

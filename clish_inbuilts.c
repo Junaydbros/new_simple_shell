@@ -35,6 +35,8 @@ int clish_cd(char **args)
 
 int clish_exit(char **args)
 {
+	(void)args;
+
 	return (0);
 }
 
