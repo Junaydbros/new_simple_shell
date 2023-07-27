@@ -55,7 +55,7 @@ char *get_input_param_path()
 {
 	static char param_path[128];
 
-	strcat(strncpy(param_path, getenv("HOME"), 113), "./clish_history");
+	strcat(strncpy(param_path, getenv("HOME"), 113), "/.clish_history");
 
 	return (param_path);
 }
@@ -66,7 +66,7 @@ char *get_input_param_path()
  * Return: an integer type
  */
 
-int input_param_count(void)
+int input_param_count()
 {
 	FILE *fp = fopen(get_input_param_path(), "r");
 	int c;

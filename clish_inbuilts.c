@@ -10,7 +10,6 @@
 
 int clish_cd(char **args)
 {
-
 	if (args[1] == NULL)
 	{
 		fprintf(stderr, "clish: Enter a directory path\n");
@@ -36,8 +35,6 @@ int clish_cd(char **args)
 
 int clish_exit(char **args)
 {
-	(void)args;
-
 	return (0);
 }
 

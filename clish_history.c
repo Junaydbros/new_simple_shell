@@ -7,11 +7,12 @@
  * Return: an integer type
  */
 
+char *clr[2] = {"clear", NULL};
+
 int clish_history(void)
 {
 	FILE *fp = fopen(get_input_param_path(), "r");
 	int ch, c, line_numb = 1;
-	int l = 0, flag = 0;
 
 	char line[128];
 	char prev_comm[128];
@@ -57,6 +58,7 @@ int clish_history(void)
 			if (line_numb == ch)
 			{
 				strcpy(prev_comm, &line[3]);
+				int l = 0, flag = 0;
 
 				fclose(fp);
 
@@ -94,7 +96,6 @@ int clish_history(void)
  * @args: an argument string
  *
  * Return: an integer type
- */
 
 int clish_execute(char **args)
 {
@@ -120,4 +121,4 @@ int clish_execute(char **args)
 		waitpid(pid, &stat, WUNTRACED);
 	}
 	return (1);
-}
+} */

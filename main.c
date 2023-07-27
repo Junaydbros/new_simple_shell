@@ -10,15 +10,12 @@
 
 int main(int argc, char **argv)
 {
-<<<<<<< HEAD
 	void loop();
-=======
 
 	(void)argc;
 	(void)argv;
 
-	clish_loop();
->>>>>>> 8411499a43cbd9f69ddd9b011f50524e4337447b
+	void clish_loop();
 
 	return (EXIT_SUCCESS);
 }

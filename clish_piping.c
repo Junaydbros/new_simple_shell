@@ -44,7 +44,6 @@ int clish_pipe(char **args)
 	int tempoout = dup(1);
 	int c = 0, l = 0, flag = 0;
 	int inredir = 0, outredir;
-	int pid;
 
 	c = 0;
 	while (c < arg_len(args))
@@ -61,6 +60,8 @@ int clish_pipe(char **args)
 	{
 		inredir = dup(tempoin);
 	}
+
+	int pid;
 
 	for (l = 0; l < arg_len(args) - flag; l++)
 	{
