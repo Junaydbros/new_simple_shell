@@ -10,7 +10,7 @@
 
 int main(int argc, char **argv)
 {
-	loop();
+	void loop();
 
 	return (EXIT_SUCCESS);
 }
