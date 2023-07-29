@@ -3,7 +3,7 @@
 
 /**
  * clish_environ - a function that sets clish SHELL environment
- * using linked list style
+ * using linked list 
  *
  * @str: environment string
  *
