@@ -23,7 +23,7 @@
  * Return: a void type
  */
 
-char *set_param_path(char **args)
+char *set_param_path(char **args);
 {
 	char *pathh, *c_path, *c_pathh;
 	char *token;

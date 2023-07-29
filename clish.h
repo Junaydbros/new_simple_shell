@@ -66,6 +66,7 @@ int count_array_elem(char **arr);
 void free_arr(char *arr);
 
 int set_clish_env(const char *name, const char *val, int owrite);
+int main(__attribute__((unused))int argc, char **argv);
 
 char *csh_strtok(char *, const char *);
 char *csh_strstr(char *, const char *);
@@ -83,26 +84,5 @@ size_t csh_strlen(const char *str);
 int _putchar(char c);
 int _puts(char *str);
 
-/* char *clr[2] = {"clear", NULL}; */
-
-/**
-* inbuilt_funct - the array of inbuilt function pointers
-* int (*inbuilt_funct[])(char **) = {&clish_cd, &clish_help, &clish_exit,
-* &clish_history, &clish_grep, &arg_len };
-*
-* inbuilt_str - aray string for strcmp() command before execvp() initiation
-* char *inbuilt_str[] = { "sizeof", "help", "exit", "history", "cd", "grep" };
-*
-*
- * inbuilt_cnt - returns the inbuilt array size
- *
- * Return: an integer type
-*
-* int inbuilt_cnt()
-* {
-*	return (sizeof(inbuilt_str) / sizeof(char *));
-* }
-*
-* For Junaydbros and Kamma
-*/
+/* For Junaydbros and Kamma */
 #endif
