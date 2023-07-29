@@ -19,9 +19,7 @@
 
 #include "structs.h"
 
-#define TKN_BUFF_SIZE 64
-#define RL_BUFF_SIZE 1024
-#define TKN_DELIM " \t\r\n\a"
+extern char **environ;
 
 /* clish functions */
 void input_param(char **, char *);
@@ -64,6 +62,8 @@ env_list *clish_environ(char **str);
 char **set_clish_envarray(char **str);
 char *getstrpath(const char *name);
 char *clish_getpath(char *var);
+int count_array_elem(char **arr);
+void free_arr(char *arr);
 
 int set_clish_env(const char *name, const char *val, int owrite);
 
