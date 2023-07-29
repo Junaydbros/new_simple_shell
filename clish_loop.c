@@ -7,43 +7,21 @@
  * Return: a void type
  */
 
-void clish_loop(void)
+int clish_loop(char *argv)
 {
-	char *line;
-	char **args;
-	int stat = 1, a = 0, flag = 0;
+	int stat = 1, flag = 0;
 
 	while (stat)
 	{
-		get_dir("loop");
-		printf("$ ");
-		line = line_reader();
-		flag = 0;
-		a = 0;
+		flag = flag + 1;
 
-		while (line[a] != '\0')
+		if (isatty(0))
 		{
-			if (line[a] == '|')
-			{
-			flag = 1;
-			break;
-			}
-			a++;
+			printf("clish$ ");
 		}
-
-		if (flag)
-		{
-			pipe_input_param(line);
-			args = pipe_split(line);
-			stat = clish_pipe(args);
-		}
-		else
-		{
-			args = line_split(line);
-			stat = clish_launcher(args);
-		}
-
-		free(line);
-		free(args);
+		
+		stat = line_reader(argv, flag);
 	}
+
+	return (0);
 }

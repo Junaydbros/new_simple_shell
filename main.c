@@ -8,15 +8,9 @@
  * Return: an integer type
  */
 
-int main(int argc, char **argv)
+int main(__attribute__((unused))int argc, char **argv)
 {
-	void loop();
-	void clish_loop();
-
-	(void)argc;
-	(void)argv;
-
-	/* void clish_loop(); */
+	clish_loop(argv[0]);
 
 	return (EXIT_SUCCESS);
 }

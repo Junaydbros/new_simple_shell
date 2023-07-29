@@ -24,7 +24,6 @@ int arg_len(char **args)
  * @str: a string
  *
  * Return: a string type
- */
 
 char *whitespace_trim(char *str)
 {
@@ -49,4 +48,4 @@ char *whitespace_trim(char *str)
 	*(end + 1) = 0;
 
 	return (str);
-}
+} */

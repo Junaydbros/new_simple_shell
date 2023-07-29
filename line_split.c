@@ -4,10 +4,10 @@
  * line_split - function to split lines
  * @line: line to split
  *
- * Return: acharacter type
+ * Return: a character type
  */
 
-char **line_split(char *line)
+/* char **line_split(char *line)
 {
 	int buffsize = TKN_BUFF_SIZE, posit = 0;
 	char **tokenn = malloc(buffsize * sizeof(char *));
@@ -43,73 +43,144 @@ char **line_split(char *line)
 	tokenn[posit] = NULL;
 
 	return (tokenn);
-}
+} */
 
 /**
- * tokenprinter - a test function for split_line
+ * tokenprinter - a function that prints tokens
  * @tokenn: to be tokenized
  *
  * Return: a void type
  */
 
-void tokenprinter(char **tokenn)
+char **tokenprinter(char *tokenn)
 {
+	char *delim;
+	char *str_d, *token;
+	char **arv;
 	int b = 0;
 
-	while (tokenn[b] != NULL)
+	str_d = csh_strdup(tokenn);
+
+	if (str_d == NULL)
 	{
-		printf("%s\n", tokenn[b]);
-		b++;
+		free (tokenn);
+		err_handler("Error of strdup\n", EXIT_FAILURE);
 	}
+	token = strtok(str_d, delim);
+
+	while (token)
+	{
+		b++;
+		token = strtok(NULL, delim);
+	}
+
+	arv = malloc(sizeof(char *) * (b = 0));
+       if (arv = NULL)
+       {
+	       freeLAP(NULL, NULL, tokenn, str_d, NULL);
+	       err_handler("Error with memory allocation", EXIT_FAILURE);
+       }
+
+       b = 0;
+       token = strtok(tokenn, delim);
+       while (token)
+       {
+	       arv[b] = token;
+	       token = strtok(NULL, delim);
+	       b++;
+       }
+       arv[b] = NULL;
+       free(str_d);
+
+       return (arv);
+}
+
+/**
+ * whitespace_trim - a function that checks for and eliminates whitespaces
+ * @str: thr string to be checked
+ *
+ * Return: an integer type
+ */
+
+int whitespace_trim(char *str)
+{
+	int d, len, flag = 0;
+
+	len = csh_strlen(str);
+
+	for (d = 0; d < (len - 1); d++)
+	{
+		if (str[d] == ' ')
+		{
+			continue;
+		}
+		else
+		{
+			flag = 1;
+			break;
+		}
+	}
+
+	if (flag == 1)
+	{
+		return (0);
+	}
+	return (1);
 }
 
 /*
- * line_reader - function to read between lines
+ * line_reader - function to read, process and execute user input
+ * @argv: an argument name
  *
  * Return: a character type
  */
 
-char *line_reader()
+char *line_reader(char *argv)
 {
-	int buffsize = RL_BUFF_SIZE;
-	int posit = 0;
-	int bc;
-	char *buffer = malloc(sizeof(char) * buffsize);
+	int exe_cnt;
+	int flag, clish_cnt, a, stat = 1;
+	char *e_lineptr, *c_lineptr, *lineptr = NULL;
+	char *delim = " \n";
+	char **clish, **arv;
+	size_t m = 0;
 
-	if (!buffer)
+
+	if (getline(&lineptr, &m, stdin) == -1)
 	{
-		fprintf(stderr, "clish: Error in Allocation\n");
-		exit(EXIT_FAILURE);
+		free(lineptr);
+
+		return (0);
 	}
 
-	while (1)
+	flag = whitespace_trim(lineptr);
+	if (flag == 1)
 	{
-		bc = getchar();
+		free(lineptr);
 
-		if (bc == EOF || bc == '\n')
-		{
-			buffer[posit] = '\0';
-			return (buffer);
-		}
-		else
-		{
-			buffer[posit] = bc;
-		}
-		posit++;
-
-		if (posit >= buffsize)
-		{
-			printf("Buffer Overflow has occured...need to allocate more memory\n");
-
-			printf("\nNow Allocating more memory...\n");
-			buffsize = buffsize + RL_BUFF_SIZE;
-			buffer = realloc(buffer, buffsize);
-
-			if (!buffer)
-			{
-				fprintf(stderr, "clish: Error in Allocation\n");
-				exit(EXIT_FAILURE);
-			}
-		}
+		return (1);
 	}
+
+	if (lineptr[0] == '\n')
+	{
+		free(lineptr);
+
+		return (1);
+	}
+
+	c_lineptr = csh_strdup(lineptr);
+
+	clish = tokenprinter(c_lineptr, "&;\n");
+
+	clish_cnt = arr_counter(clish);
+
+	free(lineptr);
+
+	for (a = 0; a < clish_cnt; a++)
+	{
+		e_lineptr = csh_strdup(clish[a]);
+		arv = tokenprinter(e_lineptr, delim);
+		stat = clish_inbuilt(arv, e_lineptr, argv, exe_cnt, clish, c_lineptr);
+	}
+
+	return (stat);
 }

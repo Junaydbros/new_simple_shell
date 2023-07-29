@@ -40,3 +40,25 @@ void ctrl_handle()
 	signal(SIGINT, ctrl_handle);
 	getchar();
 }
+
+int cli_handler(char **args)
+{
+	char *line, *token, *argv, *csh;
+	int a = 0;
+
+	argv = line;
+
+	cmd = csh_strtok(line, "\n\t\r ");
+
+	args[a] = csh;
+
+	do {
+		a++;
+		token = csh_strtok(NULL, "\n\t\r");
+		argv = token;
+		args[a] = token;
+	} while (argv != NULL)
+	args[a] = NULL;
+
+	return (a);
+}

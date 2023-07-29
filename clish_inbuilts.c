@@ -10,6 +10,9 @@
 
 int clish_cd(char **args)
 {
+	char *lineptr, c_linptr;
+	char **clish;
+	
 	if (args[1] == NULL)
 	{
 		fprintf(stderr, "clish: Enter a directory path\n");
@@ -19,9 +22,11 @@ int clish_cd(char **args)
 	{
 		if (chdir(args[1]) > 0)
 		{
-			perror("dash");
+			perror("clish error\n");
 		}
 	}
+
+	freeLAP(args, clish, lineptr, c_lineptr, NULL);
 
 	return (1);
 }
@@ -35,9 +40,17 @@ int clish_cd(char **args)
 
 int clish_exit(char **args)
 {
-	(void)args;
+	char *lineptr, *c_lineptr;
+	char **clish;
 
-	return (0);
+	freeLAP(args, clish, lineptr, c_lineptr, NULL);
+
+	if (errno != 0)
+	{
+		exit (errno);
+	}
+
+	exit (0);
 }
 
 /**
@@ -59,6 +72,23 @@ int clish_help(char **args)
 				"\n The currently supported commands include:\n1. cd\n2. cat \n3. touch \n4. help \n5. exit"
 				"\n------------\n");
 	}
+
+	return (1);
+}
+
+int clish_path(char **args)
+{
+	char *lineptr, *c_lineptr;
+	char **clish;
+	size_t a = 0;
+
+	do {
+		_puts(environ[a]);
+		_puts("\n");
+		a++;
+	} while (environ[a])
+
+	freeLAP(args, clish, lineptr, c_lineptr, NULL);
 
 	return (1);
 }

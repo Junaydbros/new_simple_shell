@@ -3,6 +3,8 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <stddef.h>
+#include <wait.h>
 #include <string.h>
 #include <unistd.h>
 #include <sys/types.h>
@@ -15,6 +17,8 @@
 #include <signal.h>
 #include <dirent.h>
 
+#include "structs.h"
+
 #define TKN_BUFF_SIZE 64
 #define RL_BUFF_SIZE 1024
 #define TKN_DELIM " \t\r\n\a"
@@ -22,12 +26,13 @@
 /* clish functions */
 void input_param(char **, char *);
 void pipe_input_param(char *);
-void tokenprinter(char **);
+char **tokenprinter(char *);
 void ctrl_handle();
 void get_dir(char *);
 
-char *get_input_param_path();
-char *get_path(char *cmd);
+char *get_input_param_path(char *);
+char *get_path(char *);
+char *set_param_path(char **);
 
 int input_param_count();
 
@@ -42,7 +47,7 @@ int clish_pipe(char **);
 
 char **pipe_split(char *);
 char **line_split(char *);
-char *line_reader();
+char *line_reader(char *);
 char *whitespace_trim(char *);
 int arg_len(char **);
 
