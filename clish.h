@@ -26,7 +26,8 @@
 /* clish functions */
 void input_param(char **, char *);
 void pipe_input_param(char *);
-void freeLAP(char **args, char *lineptr, char *argv, int exe_cnt, char **clish, char *c_lineptr);
+void freeLAP(char **args, char *lineptr, char *argv, int exe_cnt,
+		char **clish, char *c_lineptr);
 void err_handler(char *arg, int exit_param);
 void ctrl_handle(int);
 void get_dir(char *);
@@ -41,12 +42,14 @@ int clish_cd(char **);
 int clish_exit(char **);
 int clish_help(char **);
 int clish_launcher(char **);
-int clish_execute(char **args, char *lineptr, char *argv, int exe_cnt, char **clish, char *c_lineptr;
+int clish_execute(char **args, char *lineptr, char *argv, int exe_cnt,
+		char **clish, char *c_lineptr;
 int clish_history(int);
 int clish_grep(char **);
 int clish_pipe(char **);
 int clish_path(char **);
-int clish_otherexec(char **args, char *lineptr, char *argv, int exe_cnt, char **clish, char *c_lineptr);
+int clish_otherexec(char **args, char *lineptr, char *argv, int exe_cnt,
+	char **clish, char *c_lineptr);
 int cli_handler(char *, char **);
 int errmsg_handler(char *, int, char *, char *);
 

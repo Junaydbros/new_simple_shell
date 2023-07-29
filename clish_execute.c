@@ -5,11 +5,17 @@
  * This execvp() call takes place in the child process and the parent has to
  * wait until the child process terminates
  * @args: the argument cont
+ * @lineptr: line pointer
+ * @argv: argument
+ * @exe_cnt: execution count
+ * @clish: command
+ * @c_lineptr: copied lineptr
  *
  * Return: 1 on success
  */
 
-int clish_execute(char **args, char *lineptr, char *argv, int exe_cnt, char **clish, char *c_lineptr)
+int clish_execute(char **args, char *lineptr, char *argv, int exe_cnt,
+		char **clish, char *c_lineptr)
 {
 	int a, inbuilt_cnt;
 
@@ -34,11 +40,17 @@ int clish_execute(char **args, char *lineptr, char *argv, int exe_cnt, char **cl
 /**
  * clish_otherexec - the function helps the clish SHELL execute other commands
  * @args: user command
+ * @lineptr: line pointer
+ * @argv: argument
+ * @exe_cnt: execution count
+ * @clish: command
+ * @c_lineptr: copied lineptr
  *
  * Return: an integer type
  */
 
-int clish_otherexec(char **args, char *lineptr, char *argv, int exe_cnt, char **clish, char *c_lineptr)
+int clish_otherexec(char **args, char *lineptr, char *argv, int exe_cnt,
+		char **clish, char *c_lineptr)
 {
 	char *path, *comm;
 	int stat, flag = 0;
@@ -83,11 +95,16 @@ int clish_otherexec(char **args, char *lineptr, char *argv, int exe_cnt, char **
 /**
  * freeLAP - a function that free buffer linepointers and paths
  * @args: an argument
+ * @lineptr: line pointer
+ * @path: execution count
+ * @clish: command
+ * @c_lineptr: copied lineptr
  *
  * Return: a void type
  */
 
-void freeLAP(char **args, char **clish, char *lineptr, char *path, char *c_lineptr)
+void freeLAP(char **args, char **clish, char *lineptr, char *path,
+		char *c_lineptr)
 {
 
 	if (args != NULL)
