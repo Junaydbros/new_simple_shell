@@ -168,7 +168,7 @@ char *line_reader(char *argv)
 	}
 	c_lineptr = csh_strdup(lineptr);
 	clish = tokenprinter(c_lineptr, "&;\n");
-	clish_cnt = arr_counter(clish);
+	clish_cnt = csh_array(clish);
 
 	free(lineptr);
 
@@ -176,7 +176,7 @@ char *line_reader(char *argv)
 	{
 		e_lineptr = csh_strdup(clish[a]);
 		arv = tokenprinter(e_lineptr, delim);
-		stat = clish_inbuilt(arv, e_lineptr, argv, exe_cnt, clish, c_lineptr);
+		stat = clish_execute(arv, e_lineptr, argv, exe_cnt, clish, c_lineptr);
 	}
 	return (stat);
 }

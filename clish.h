@@ -41,7 +41,7 @@ int clish_exit(char **);
 int clish_help(char **);
 int clish_launcher(char **);
 int clish_execute(char **args, char *lineptr, char *argv, int exe_cnt,
-		char **clish, char *c_lineptr;
+		char **clish, char *c_lineptr);
 int clish_history(int);
 int clish_grep(char **);
 int clish_pipe(char **);

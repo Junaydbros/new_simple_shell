@@ -23,21 +23,21 @@ int set_clish_env(const char *name, const char *val, int owrite)
 		perror("environment setup failed");
 		return (-1);
 	}
-	env_str = get_clish_envstr(name);
+	env_str = getstrpath(name);
 	/*copy environment to new variable*/
 	for (a = 0; environ[a]; a++)
 	{
-		env_arr[a] = my_strdup(environ[a]);
+		arr_env[a] = csh_strdup(environ[a]);
 	}
 
 	if (env_str == NULL)
 	{
-		env_arr[a] = set_env_str(name, val);
-		env_arr[a + 1] = NULL;
+		arr_env[a] = clish_env_str(name, val);
+		arr_env[a + 1] = NULL;
 	}
 	else if (owrite != 0)
 	{
-		env_arr[a] = NULL;
+		arr_env[a] = NULL;
 		for (a = 0; environ[a]; a++)
 		{
 			if (csh_strcmp(environ[a], env_str) == 0)

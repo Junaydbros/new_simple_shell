@@ -23,7 +23,7 @@
  * Return: a void type
  */
 
-char *set_param_path(char **args);
+char *set_param_path(char **args)
 {
 	char *pathh, *c_path, *c_pathh;
 	char *token;
@@ -32,14 +32,14 @@ char *set_param_path(char **args);
 
 	char *clish = args[0];
 
-	pathh = clish_path("PATH");
+	pathh = clish_getpath("PATH");
 
 	c_path = csh_strdup(pathh);
 	c_pathh = csh_strdup(pathh);
 
 	if (c_path == NULL)
 	{
-		err_handler("Duplication of paths fell through\n", EXIT_FAILURE);
+		err_handler("Path Duplication Failure", EXIT_FAILURE);
 	}
 		token = csh_strtok(c_path, ":");
 		while (token)
@@ -107,7 +107,7 @@ char *get_input_param_path(char *clish)
 		free(path);
 	}
 	free(arr_path);
-	free(pathh)
+	free(pathh);
 
 	return (NULL);
 }
