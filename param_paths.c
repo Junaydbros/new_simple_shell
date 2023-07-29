@@ -5,14 +5,15 @@
  * @line: line to be piped
  *
  * Return: a void type
-
-void pipe_input_param(char *line)
-{
-	FILE *input_file = fopen(get_input_param_path(), "a+");
-
-	fprintf(input_file, "%d. %s\n", input_param_count(), line);
-	fclose(input_file);
-} */
+*
+* void pipe_input_param(char *line)
+* {
+*	FILE *input_file = fopen(get_input_param_path(), "a+");
+*
+*	fprintf(input_file, "%d. %s\n", input_param_count(), line);
+*	fclose(input_file);
+* }
+*/
 
 /**
  * set_param_path - function that fetches input for the history command
@@ -30,6 +31,7 @@ char *set_param_path(char **args)
 	size_t cnt = 0;
 
 	char *clish = args[0];
+
 	pathh = clish_path("PATH");
 
 	c_path = csh_strdup(pathh);
@@ -53,7 +55,7 @@ char *set_param_path(char **args)
 			err_handler("Error in memory allocation\n", EXIT_FAILURE);
 		}
 		token = csh_strtok(c_pathh, ":");
-		
+
 		for (cnt = 0; token; cnt++)
 		{
 			arr_path[cnt] = token;
@@ -81,7 +83,7 @@ char *get_input_param_path(char *clish)
 	size_t param_path, clish_len;
 
 	clish_len = csh_strlen(clish);
-	
+
 	for (cnt = 0; arr_path[cnt]; cnt++)
 	{
 		get_path = csh_strdup(arr_path[cnt]);
@@ -114,23 +116,23 @@ char *get_input_param_path(char *clish)
  * input_param_count - a function that returns the count of the history command
  *
  * Return: an integer type
-
-int input_param_count()
-{
-	FILE *fp = fopen(get_input_param_path(), "r");
-	int c;
-	int line_nums = 1;
-
-	while (c != EOF)
-	{
-		c = getc(fp);
-		if (c == '\n')
-		{
-			line_nums++;
-		}
-	}
-
-	return (line_nums);
-} */
-
-/* Note that this files handles parameters that work to execute commands */
+*
+* int input_param_count(int c)
+* {
+*	FILE *fp = fopen(get_input_param_path(), "r");
+*	int line_nums = 1;
+*
+*	while (c != EOF)
+*	{
+*		c = getc(fp);
+*		if (c == '\n')
+*		{
+*			line_nums++;
+*		}
+*	}
+*
+*	return (line_nums);
+* }
+*
+* Note that this files handles parameters that work to execute commands
+*/

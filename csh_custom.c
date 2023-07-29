@@ -1,4 +1,4 @@
-#include "shell.h"
+#include "clish.h"
 /**
  * _putchar - a function that prints a character
  * @c: the character to be printed

@@ -1,4 +1,4 @@
-#include "shell.h"
+#include "clish.h"
 
 /**
  * csh_strtok - a function that tokenizes a string
@@ -43,7 +43,6 @@ char *csh_strtok(char *str, const char *delim)
 			}
 		}
 	}
-	
 	if (str[c] == '\0')
 	{
 		token = n_str;

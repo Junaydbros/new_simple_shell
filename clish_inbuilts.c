@@ -12,7 +12,7 @@ int clish_cd(char **args)
 {
 	char *lineptr, c_linptr;
 	char **clish;
-	
+
 	if (args[1] == NULL)
 	{
 		fprintf(stderr, "clish: Enter a directory path\n");
@@ -47,10 +47,10 @@ int clish_exit(char **args)
 
 	if (errno != 0)
 	{
-		exit (errno);
+		exit(errno);
 	}
 
-	exit (0);
+	exit(0);
 }
 
 /**
@@ -64,17 +64,30 @@ int clish_help(char **args)
 {
 	if (args[0] != NULL && strcmp(args[0], "help") == 0)
 	{
-		fprintf(stderr, "\n------------\n"
-				"\nclish is a simple UNIX terminal shell written with C language,\n"
-				"\nThis project was developed as an evaluation project in the ALX Software Engineering Programme to test student's understanding of C programming language\n"
-				"\nProject was done as a team of two and the authors of this project are Abdlhamid Sanusi and Kamma Okoh\n"
-				"\nA Very challenging task but Kudos to the brains behind this masterpiece\n"
-				"\n The currently supported commands include:\n1. cd\n2. cat \n3. touch \n4. help \n5. exit"
-				"\n------------\n");
+		fprintf(stderr, "\n------------\n");
+		fprintf(stderr, "\nclish is a simple UNIX terminal shell written with");
+		fprintf(stderr, " C language,\n");
+		fprintf(stderr,	"\nThis project was developed as an evaluation project in ");
+		fprintf(stderr, "the ALX Software Engineering Programme to test student's");
+		fprintf(stderr, " understanding of C programming language\n");
+		fprintf(stderr,	"\nProject was done as a team of two and the authors of ");
+		fprintf(stderr, "this project are Abdlhamid Sanusi and Kamma Okoh\n");
+		fprintf(stderr,	"\nA Very challenging task but Kudos to the brains behind ");
+		fprintf(stderr, "this masterpiece\n");
+		fprintf(stderr,	"\n The currently supported commands include:\n1. cd\n2. ");
+		fprintf(stderr, "cat \n3. touch \n4. help \n5. exit");
+		fprintf(stderr,	"\n------------\n");
 	}
 
 	return (1);
 }
+
+/**
+ * clish_path - a function that prints environment variables
+ * @args: user command
+ *
+ * Return: an intger type
+ */
 
 int clish_path(char **args)
 {

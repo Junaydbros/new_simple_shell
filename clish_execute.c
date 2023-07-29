@@ -9,15 +9,14 @@
  * Return: 1 on success
  */
 
-int clish_execute(char **args)
+int clish_execute(char **args, char *lineptr, char *argv, int exe_cnt, char **clish, char *c_lineptr)
 {
-	char *lineptr, *argv, *c_lineptr;
-	char **clish;
-	int exe_cnt, a, inbuilt_cnt;
+	int a, inbuilt_cnt;
 
 	char *inbulit_str[] = {"exit", "cd", "path", "help" };
 
-	int (*inbuilt_funct[])(char **, char *, char **, char *, char **) = { &clish_exit, &clish_cd, &clish_path, &clish_help };
+	int (*inbuilt_funct[])(char **, char *, char **, char *, char **) = {
+		&clish_exit, &clish_cd, &clish_path, &clish_help };
 
 	inbuilt_cnt = sizeof(inbuilt_str) / sizeof(char *);
 
@@ -39,17 +38,14 @@ int clish_execute(char **args)
  * Return: an integer type
  */
 
-int clish_otherexec(char **args)
+int clish_otherexec(char **args, char *lineptr, char *argv, int exe_cnt, char **clish, char *c_lineptr)
 {
-	char *lineptr, *argv, *c_lineptr;
-	char **clish;
 	char *path, *comm;
-	int exe_cnt, stat, flag = 0;
-
+	int stat, flag = 0;
 	pid_t pid;
 	size_t cnt;
-	comm = args[0];
 
+	comm = args[0];
 	for (cnt = 0; comm[cnt]; cnt++)
 	{
 		if (comm[cnt] == '/')
@@ -60,17 +56,13 @@ int clish_otherexec(char **args)
 		}
 	}
 	if (flag != 1)
-	{
 		path = set_param_path(args);
-	}
 	if (path == NULL)
 	{
 		errmsg_handler(argv, exe_cnt, args[0], " input not found\n");
 		freeLAP(args, clish, lineptr, path, c_lineptr);
-
 		exit(127);
 	}
-
 	pid = fork();
 	if (pid == 0)
 	{
@@ -81,22 +73,22 @@ int clish_otherexec(char **args)
 		}
 	}
 	else
-	{
 		wait(&stat);
-	}
 	freeLAP(args, clish, lineptr, c_lineptr, NULL);
-
 	if (flag != 1)
-	{
 		free(path);
-	}
 	return (1);
 }
 
-void freeLAP(char **args)
+/**
+ * freeLAP - a function that free buffer linepointers and paths
+ * @args: an argument
+ *
+ * Return: a void type
+ */
+
+void freeLAP(char **args, char **clish, char *lineptr, char *path, char *c_lineptr)
 {
-	char *lineptr, *path, *c_lineptr;
-	char **clish;
 
 	if (args != NULL)
 	{

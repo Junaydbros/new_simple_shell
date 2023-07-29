@@ -3,6 +3,7 @@
 /**
  * clish_loop - a function that runs the clish shell terminal in a loop,
  * continuously prompting the user for input and processing their commands
+ * @argv: an argument
  *
  * Return: a void type
  */
@@ -19,7 +20,7 @@ int clish_loop(char *argv)
 		{
 			printf("clish$ ");
 		}
-		
+
 		stat = line_reader(argv, flag);
 	}
 

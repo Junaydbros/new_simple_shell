@@ -7,43 +7,46 @@
  * Return: a character type
  */
 
-/* char **line_split(char *line)
-{
-	int buffsize = TKN_BUFF_SIZE, posit = 0;
-	char **tokenn = malloc(buffsize * sizeof(char *));
-	char *token;
+/**
+ * char **line_split(char *line)
+* {
+*	int buffsize = TKN_BUFF_SIZE, posit = 0;
+*	char **tokenn = malloc(buffsize * sizeof(char *));
+*	char *token;
+*
+*	if (!tokenn)
+*	{
+*		fprintf(stderr, "clish: Error with allocation\n");
+*		exit(EXIT_FAILURE);
+*	}
+*	token = strtok(line, TKN_DELIM);
+*
+*	while (token != NULL)
+*	{
+*		tokenn[posit] = token;
+*		posit++;
+*
+*		if (posit >= buffsize)
+*		{
+*			buffsize = buffsize + TKN_BUFF_SIZE;
+*			tokenn = realloc(tokenn, buffsize * sizeof(char *));
+*
+*			if (!tokenn)
+*			{
+*				fprintf(stderr, "clish: Error with Allocation\n");
+*				exit(EXIT_FAILURE);
+*			}
+*		}
+*
+*		token = strtok(NULL, TKN_DELIM);
+*	}
+*
+*	tokenn[posit] = NULL;
+*
+*	return (tokenn);
+* }
+*/
 
-	if (!tokenn)
-	{
-		fprintf(stderr, "clish: Error with allocation\n");
-		exit(EXIT_FAILURE);
-	}
-	token = strtok(line, TKN_DELIM);
-
-	while (token != NULL)
-	{
-		tokenn[posit] = token;
-		posit++;
-
-		if (posit >= buffsize)
-		{
-			buffsize = buffsize + TKN_BUFF_SIZE;
-			tokenn = realloc(tokenn, buffsize * sizeof(char *));
-
-			if (!tokenn)
-			{
-				fprintf(stderr, "clish: Error with Allocation\n");
-				exit(EXIT_FAILURE);
-			}
-		}
-
-		token = strtok(NULL, TKN_DELIM);
-	}
-
-	tokenn[posit] = NULL;
-
-	return (tokenn);
-} */
 
 /**
  * tokenprinter - a function that prints tokens
@@ -63,7 +66,7 @@ char **tokenprinter(char *tokenn)
 
 	if (str_d == NULL)
 	{
-		free (tokenn);
+		free(tokenn);
 		err_handler("Error of strdup\n", EXIT_FAILURE);
 	}
 	token = strtok(str_d, delim);
@@ -75,24 +78,24 @@ char **tokenprinter(char *tokenn)
 	}
 
 	arv = malloc(sizeof(char *) * (b = 0));
-       if (arv = NULL)
-       {
-	       freeLAP(NULL, NULL, tokenn, str_d, NULL);
-	       err_handler("Error with memory allocation", EXIT_FAILURE);
-       }
+	if (arv == NULL)
+	{
+		freeLAP(NULL, NULL, tokenn, str_d, NULL);
+		err_handler("Error with memory allocation", EXIT_FAILURE);
+	}
 
-       b = 0;
-       token = strtok(tokenn, delim);
-       while (token)
-       {
-	       arv[b] = token;
-	       token = strtok(NULL, delim);
-	       b++;
-       }
-       arv[b] = NULL;
-       free(str_d);
+	b = 0;
+	token = strtok(tokenn, delim);
+	while (token)
+	{
+		arv[b] = token;
+		token = strtok(NULL, delim);
+		b++;
+	}
+	arv[b] = NULL;
+	free(str_d);
 
-       return (arv);
+	return (arv);
 }
 
 /**
@@ -128,8 +131,8 @@ int whitespace_trim(char *str)
 	return (1);
 }
 
-/*
- * line_reader - function to read, process and execute user input
+/**
+ * line_reader - a function to read, process and execute user input
  * @argv: an argument name
  *
  * Return: a character type
@@ -144,11 +147,9 @@ char *line_reader(char *argv)
 	char **clish, **arv;
 	size_t m = 0;
 
-
 	if (getline(&lineptr, &m, stdin) == -1)
 	{
 		free(lineptr);
-
 		return (0);
 	}
 
@@ -159,18 +160,14 @@ char *line_reader(char *argv)
 
 		return (1);
 	}
-
 	if (lineptr[0] == '\n')
 	{
 		free(lineptr);
 
 		return (1);
 	}
-
 	c_lineptr = csh_strdup(lineptr);
-
 	clish = tokenprinter(c_lineptr, "&;\n");
-
 	clish_cnt = arr_counter(clish);
 
 	free(lineptr);
@@ -181,6 +178,5 @@ char *line_reader(char *argv)
 		arv = tokenprinter(e_lineptr, delim);
 		stat = clish_inbuilt(arv, e_lineptr, argv, exe_cnt, clish, c_lineptr);
 	}
-
 	return (stat);
 }

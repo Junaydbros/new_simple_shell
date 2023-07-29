@@ -3,43 +3,36 @@
 /**
  * clish_history - function that shows history of recently entered commands and
  * awaits user input
+ * @ch: a character variable
  *
  * Return: an integer type
  */
 
-char *clr[2] = {"clear", NULL};
-
-int clish_history(void)
+int clish_history(int ch)
 {
 	FILE *fp = fopen(get_input_param_path(), "r");
-	int ch, c, line_numb = 1;
+	int c, line_numb = 1;
 	int l = 0, flag = 0;
 
 	char line[128];
 	char prev_comm[128];
 	char **args = NULL;
+	char *clr[2] = {"clear", NULL};
 
 	if (!fp)
-	{
 		fprintf(stderr, "file not found\n");
-	}
 	else
 	{
 		putchar('\n');
 		while ((c = getc(fp)) != EOF)
-		{
 			putchar(c);
-		}
 	}
 	printf("\n <0>: Exit	<#line>: Exec cmd	<-1>: cls \n\n: ");
 	scanf("%d", &ch);
 	getchar();
 	fseek(fp, 0, SEEK_SET);
-
 	if (isdigit(ch) != 0)
-	{
 		printf("Kindly enter a number\n");
-	}
 	else if (ch == 0)
 	{
 		fclose(fp);
@@ -54,15 +47,36 @@ int clish_history(void)
 	}
 	else
 	{
+		history_remainder;
+	}
+}
+
+/**
+ * history_remainder - the remainder for clish_history
+ * @ch: still the continuation for clish_history
+ *
+ * Return: an intger type
+ */
+
+int history_remainder(int ch)
+{
+	char line[128];
+	FILE *fp = fopen(get_input_param_path(), "r");
+	int line_numb = 1;
+	int l = 0, flag = 0;
+
+	char line[128];
+	char prev_comm[128];
+	char **args = NULL;
+	char *clr[2] = {"clear", NULL};
+
 		while ((fgets(line, 128, fp)) != NULL)
 		{
 			if (line_numb == ch)
 			{
 				strcpy(prev_comm, &line[3]);
 				/* int l = 0, flag = 0; */
-
 				fclose(fp);
-
 				while (prev_comm[l] != '\0')
 				{
 					if (prev_comm[l] == '|')
@@ -84,9 +98,7 @@ int clish_history(void)
 				}
 			}
 			else
-			{
 				line_numb++;
-			}
 		}
 	}
 	return (1);
@@ -97,29 +109,30 @@ int clish_history(void)
  * @args: an argument string
  *
  * Return: an integer type
-
-int clish_execute(char **args)
-{
-	pid_t pid;
-	int stat;
-
-	pid = fork();
-
-	if (pid == 0)
-	{
-		if (execvp(args[0], args) < 0)
-		{
-			printf("clish: Unidentified command: %s\n", args[0]);
-		}
-		exit(EXIT_FAILURE);
-	}
-	else if (pid < 0)
-	{
-		printf("Fork Error\n");
-	}
-	else
-	{
-		waitpid(pid, &stat, WUNTRACED);
-	}
-	return (1);
-} */
+*
+* int clish_execute(char **args)
+* {
+*	pid_t pid;
+*	int stat;
+*
+*	pid = fork();
+*
+*	if (pid == 0)
+*	{
+*		if (execvp(args[0], args) < 0)
+*		{
+*			printf("clish: Unidentified command: %s\n", args[0]);
+*		}
+*		exit(EXIT_FAILURE);
+*	}
+*	else if (pid < 0)
+*	{
+*		printf("Fork Error\n");
+*	}
+*	else
+*	{
+*		waitpid(pid, &stat, WUNTRACED);
+*	}
+*	return (1);
+* }
+*/

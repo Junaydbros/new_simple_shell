@@ -24,28 +24,28 @@ int arg_len(char **args)
  * @str: a string
  *
  * Return: a string type
-
-char *whitespace_trim(char *str)
-{
-	char *end;
-
-	while (isspace((unsigned char) *str))
-	{
-		str++;
-	}
-
-	if (*str == 0)
-	{
-		return (str);
-	}
-	end = str + strlen(str) - 1;
-
-	while (end > str && isspace((unsigned char) *end))
-	{
-		str--;
-	}
-
-	*(end + 1) = 0;
-
-	return (str);
-} */
+*
+* char *whitespace_trim(char *str)
+* {
+*	char *end;
+*
+*	while (isspace((unsigned char) *str))
+*	{
+*		str++;
+*	}
+*
+*	if (*str == 0)
+*	{
+*		return (str);
+*	}
+*	end = str + strlen(str) - 1;
+*
+*	while (end > str && isspace((unsigned char) *end))
+*	{
+*		str--;
+*	}
+*
+*	*(end + 1) = 0;
+*
+*	return (str); }
+*/

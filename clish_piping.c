@@ -46,7 +46,6 @@ int clish_pipe(char **args)
 	int inredir = 0, outredir;
 	int pid;
 
-	c = 0;
 	while (c < arg_len(args))
 	{
 		if (strcmp(args[c], "$") == 0)
@@ -56,32 +55,22 @@ int clish_pipe(char **args)
 		}
 		c++;
 	}
-
 	if (!inredir)
-	{
 		inredir = dup(tempoin);
-	}
-
 	/* int pid; */
-
 	for (l = 0; l < arg_len(args) - flag; l++)
 	{
 		char **rargs = line_split(args[l]);
 
 		dup2(inredir, 0);
 		close(inredir);
-
 		if (l == arg_len(args) - 3 && strcmp(args[l + 1], "$") == 0)
 		{
 			if (outredir == open(args[l + 1], O_WRONLY))
-			{
 				l++;
-			}
 		}
 		else if (l == arg_len(args) - flag - 1)
-		{
 			outredir = dup(tempoout);
-		}
 		else
 		{
 			int redir[2];
@@ -95,21 +84,17 @@ int clish_pipe(char **args)
 		close(outredir);
 
 		pid = fork();
-
 		if (pid == 0)
 		{
 			execvp(rargs[0], rargs);
 			perror("Fork error\n");
 			exit(EXIT_FAILURE);
 		}
-
 		wait(NULL);
 	}
-
 	dup2(tempoin, 0);
 	dup2(tempoout, 1);
 	close(tempoin);
 	close(tempoout);
-
 	return (1);
 }
