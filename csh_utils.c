@@ -14,7 +14,7 @@ size_t csh_strlen(const char *str)
 	do {
 		cnt++;
 		str++;
-	} while (*str != '\0')
+	} while (*str != '\0');
 
 	return (cnt);
 }
@@ -33,7 +33,7 @@ char *csh_strcpy(char *dest, const char *src)
 
 	do {
 		*m++ = *src++;
-	} while (*src != '\0')
+	} while (*src != '\0');
 
 	return (dest);
 }
@@ -72,7 +72,7 @@ char *csh_strcat(char *dest, const char *src)
 
 char *csh_strdup(char *str)
 {
-	size_t length = csh_strlen(str);
+	size_t len = csh_strlen(str);
 	char *n_str = malloc(sizeof(char) * (len + 1));
 
 	if (n_str == NULL)
@@ -102,7 +102,7 @@ int csh_strcmp(const char *s1, const char *s2)
 	do {
 		s1++;
 		s2++;
-	} while (*s1 && (*s1 == *s2))
+	} while (*s1 && (*s1 == *s2));
 
 	return (*s1 - *s2);
 }

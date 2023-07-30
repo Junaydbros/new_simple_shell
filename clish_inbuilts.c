@@ -8,10 +8,8 @@
  * Return: an integer type
  */
 
-int clish_cd(char **args)
+int clish_cd(char **args, char *lineptr, char **clish, char *c_lineptr)
 {
-	char *lineptr, c_linptr;
-	char **clish;
 
 	if (args[1] == NULL)
 	{
@@ -38,10 +36,8 @@ int clish_cd(char **args)
  * Return: an integer type
  */
 
-int clish_exit(char **args)
+int clish_exit(char **args, char *lineptr, char **clish, char *c_lineptr)
 {
-	char *lineptr, *c_lineptr;
-	char **clish;
 
 	freeLAP(args, clish, lineptr, c_lineptr, NULL);
 
@@ -60,7 +56,7 @@ int clish_exit(char **args)
  * Return: an integer type
  */
 
-int clish_help(char **args)
+int clish_help(char **args, char *lineptr, char **clish, char *c_lineptr)
 {
 	if (args[0] != NULL && strcmp(args[0], "help") == 0)
 	{
@@ -78,6 +74,7 @@ int clish_help(char **args)
 		fprintf(stderr, "cat \n3. touch \n4. help \n5. exit");
 		fprintf(stderr,	"\n------------\n");
 	}
+	freeLAP(args, clish, lineptr, c_lineptr, NULL);
 
 	return (1);
 }
@@ -89,17 +86,15 @@ int clish_help(char **args)
  * Return: an intger type
  */
 
-int clish_path(char **args)
+int clish_path(char **args, char *lineptr, char **clish, char *c_lineptr)
 {
-	char *lineptr, *c_lineptr;
-	char **clish;
 	size_t a = 0;
 
 	do {
 		_puts(environ[a]);
 		_puts("\n");
 		a++;
-	} while (environ[a])
+	} while (environ[a]);
 
 	freeLAP(args, clish, lineptr, c_lineptr, NULL);
 

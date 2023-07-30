@@ -73,10 +73,8 @@ char *set_param_path(char **args)
  * Return: a character type
  */
 
-char *get_input_param_path(char *clish)
+char *get_input_param_path(char **arr_path, char *clish, char *pathh)
 {
-	char **arr_path;
-	char *pathh;
 	char *path, *get_path;
 
 	size_t cnt = 0;

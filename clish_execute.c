@@ -17,11 +17,10 @@
 int clish_execute(char **args, char *lineptr, char *argv, int exe_cnt,
 		char **clish, char *c_lineptr)
 {
-	int a, inbuilt_cnt;
+	char *inbuilt_str[] = {"exit", "cd", "path", "help" };
+	int inbuilt_cnt, a;
 
-	char *inbulit_str[] = {"exit", "cd", "path", "help" };
-
-	int (*inbuilt_funct[])(char **, char *, char **, char *, char **) = {
+	int (*inbuilt_funct[])(char **, char *, char **, char *) = {
 		&clish_exit, &clish_cd, &clish_path, &clish_help };
 
 	inbuilt_cnt = sizeof(inbuilt_str) / sizeof(char *);

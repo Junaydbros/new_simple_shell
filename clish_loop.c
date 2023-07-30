@@ -18,7 +18,7 @@ int clish_loop(char *argv)
 
 		if (isatty(0))
 		{
-			printf("clish$ ");
+			_puts("clish$ ");
 		}
 
 		stat = line_reader(argv, flag);

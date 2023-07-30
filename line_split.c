@@ -55,9 +55,8 @@
  * Return: a void type
  */
 
-char **tokenprinter(char *tokenn)
+char **tokenprinter(char *tokenn, char *delim)
 {
-	char *delim;
 	char *str_d, *token;
 	char **arv;
 	int b = 0;
@@ -67,7 +66,7 @@ char **tokenprinter(char *tokenn)
 	if (str_d == NULL)
 	{
 		free(tokenn);
-		err_handler("Error of strdup\n", EXIT_FAILURE);
+		err_handler("Error in strdup\n", EXIT_FAILURE);
 	}
 	token = strtok(str_d, delim);
 
@@ -77,7 +76,7 @@ char **tokenprinter(char *tokenn)
 		token = strtok(NULL, delim);
 	}
 
-	arv = malloc(sizeof(char *) * (b = 0));
+	arv = malloc(sizeof(char *) * (b + 1));
 	if (arv == NULL)
 	{
 		freeLAP(NULL, NULL, tokenn, str_d, NULL);
@@ -138,9 +137,8 @@ int whitespace_trim(char *str)
  * Return: a character type
  */
 
-char *line_reader(char *argv)
+int line_reader(char *argv, int exe_cnt)
 {
-	int exe_cnt;
 	int flag, clish_cnt, a, stat = 1;
 	char *e_lineptr, *c_lineptr, *lineptr = NULL;
 	char *delim = " \n";
@@ -176,7 +174,8 @@ char *line_reader(char *argv)
 	{
 		e_lineptr = csh_strdup(clish[a]);
 		arv = tokenprinter(e_lineptr, delim);
-		stat = clish_execute(arv, e_lineptr, argv, exe_cnt, clish, c_lineptr);
+		stat = clish_execute(arv, e_lineptr, argv, exe_cnt, clish,
+				c_lineptr);
 	}
 	return (stat);
 }
