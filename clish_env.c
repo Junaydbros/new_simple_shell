@@ -1,6 +1,5 @@
 #include "clish.h"
 
-
 /**
  * set_clish_env - function that sets new environment for clish
  *
