@@ -1,5 +1,6 @@
 #include "clish.h"
 
+
 /**
  * get_dir - a function that fetches the current working directory for the
  * prompt
