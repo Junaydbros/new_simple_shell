@@ -1,6 +1,7 @@
 #ifndef STRUCTS_H
 #define STRUCTS_H
 
+
 /**
  * struct struct_env - structure for environment strings
  *
