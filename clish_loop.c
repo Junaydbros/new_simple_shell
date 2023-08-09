@@ -1,5 +1,6 @@
 #include "clish.h"
 
+
 /**
  * clish_loop - a function that runs the clish shell terminal in a loop,
  * continuously prompting the user for input and processing their commands
