@@ -1,5 +1,6 @@
 #include "clish.h"
 
+
 /**
  * ctrl_handle - the function handles the Ctrl-C such that the clish terminal
  * is not exited until prompted by the user with the exit command

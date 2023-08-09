@@ -1,4 +1,6 @@
 #include "clish.h"
+
+
 /**
  * clish_getpath - a function that return the environment value of a prompt
  * @var: the environment variable
